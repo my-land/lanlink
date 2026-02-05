@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LanLink - Professional Landing Pages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --m3-surface: #FFFBFF;
+            --m3-primary: #855300; 
+            --m3-secondary: #705B40;
+            --m3-surface-variant: #F4E0D6;
+        }
+
+        body {
+            font-family: 'Cairo', 'Vazirmatn', sans-serif;
+            background-color: var(--m3-surface);
+            transition: all 0.3s ease;
+        }
+
+        .m3-card {
+            border-radius: 2rem;
+            background: #FFFFFF;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .m3-card:hover {
+            box-shadow: 0px 12px 24px rgba(133, 83, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .showcase-track {
+            display: flex;
+            width: calc(250px * 12);
+            animation: scroll 40s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 6)); }
+        }
+
+        .phone-mockup {
+            width: 220px;
+            height: 440px;
+            border: 10px solid #1a1a1a;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin: 0 15px;
+            background: #eee;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .phone-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lang-btn.active {
+            background-color: var(--m3-primary);
+            color: white;
+        }
+
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="text-stone-900 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-xl z-50 border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-orange-700 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                    <i data-lucide="link" class="w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight text-stone-800">LanLink</span>
+            </div>
+            
+            <div class="flex bg-stone-100 p-1 rounded-3xl border border-stone-200">
+                <button onclick="changeLanguage('ar')" id="btn-ar" class="lang-btn active px-4 py-2 rounded-2xl text-xs font-bold transition-all">العربية</button>
+                <button onclick="changeLanguage('ku')" id="btn-ku" class="lang-btn px-4 py-2 rounded-2xl text-xs font-bold transition-all">Kurdî</button>
+                <button onclick="changeLanguage('en')" id="btn-en" class="lang-btn px-4 py-2 rounded-2xl text-xs font-bold transition-all">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 data-i18n="heroTitle" class="text-5xl md:text-7xl font-bold text-stone-900 mb-8 leading-tight">
+                هويتك الرقمية في صفحة واحدة
+            </h1>
+            <p data-i18n="heroSubtitle" class="text-xl text-stone-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                صمم لندينج بيج احترافي لعملك في العراق خلال ۳۰ دقيقة فقط. سريع، بسيط، وبدون تعقيد.
+            </p>
+            
+            <!-- Dual CTAs -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/989358185552?text=I want to order a page" class="w-full md:w-auto px-10 py-5 bg-orange-700 hover:bg-orange-800 text-white rounded-[2rem] font-bold text-lg shadow-xl transition-all hover:scale-105">
+                    <span data-i18n="ctaOrder">اطلب صفحتك الآن</span>
+                </a>
+                <a href="https://wa.me/989358185552?text=I have some questions" class="w-full md:w-auto px-10 py-5 bg-white border-2 border-orange-700 text-orange-700 rounded-[2rem] font-bold text-lg hover:bg-orange-50 transition-all">
+                    <span data-i18n="ctaConsult">اسأل وخذ صفحتك الآن</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Slider -->
+    <section class="py-16 bg-stone-50 overflow-hidden">
+        <div class="showcase-track">
+            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" alt="1"></div>
+            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400" alt="2"></div>
+            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400" alt="3"></div>
+            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400" alt="4"></div>
+            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" alt="5"></div>
+            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400" alt="6"></div>
+        </div>
+    </section>
+
+    <!-- Detailed Features -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 data-i18n="featSectionTitle" class="text-3xl md:text-4xl font-bold mb-16">لماذا تختار LanLink؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="m3-card p-8 border border-stone-100">
+                    <i data-lucide="globe" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
+                    <h3 data-i18n="fTitle1" class="text-xl font-bold mb-3">نطاق خاص (Domain)</h3>
+                    <p data-i18n="fDesc1" class="text-stone-500 text-sm">احصل على رابط خاص باسمك (com.) لتعزيز احترافيتك.</p>
+                </div>
+                <div class="m3-card p-8 border border-stone-100">
+                    <i data-lucide="palette" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
+                    <h3 data-i18n="fTitle2" class="text-xl font-bold mb-3">تصميم فريد</h3>
+                    <p data-i18n="fDesc2" class="text-stone-500 text-sm">لا نستخدم القوالب الجاهزة؛ كل صفحة تُصمم خصيصاً لتناسب هوية علامتك التجارية.</p>
+                </div>
+                <div class="m3-card p-8 border border-stone-100">
+                    <i data-lucide="languages" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
+                    <h3 data-i18n="fTitle3" class="text-xl font-bold mb-3">متعدد اللغات</h3>
+                    <p data-i18n="fDesc3" class="text-stone-500 text-sm">صفحتك متاحة بالعربية، الكردية، والإنجليزية لتصل لجميع الزبائن.</p>
+                </div>
+                <div class="m3-card p-8 border border-stone-100">
+                    <i data-lucide="shield-check" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
+                    <h3 data-i18n="fTitle4" class="text-xl font-bold mb-3">دعم فني متميز</h3>
+                    <p data-i18n="fDesc4" class="text-stone-500 text-sm">نحن معك دائماً عبر واتساب لضمان عمل صفحتك بأفضل صورة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-24 px-6 bg-orange-50/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 data-i18n="useCasesTitle" class="text-3xl font-bold text-center mb-16">أين يمكنك استخدام صفحتك؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="instagram" class="w-6 h-6 text-pink-600"></i></div>
+                    <div>
+                        <h4 data-i18n="use1" class="font-bold text-lg mb-2">رابط البايو (Bio Link)</h4>
+                        <p data-i18n="use1Desc" class="text-stone-500 text-sm">اجمع کل روابطک ومنصاتک فی رابط واحد شیک فی بروفایلک.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="contact" class="w-6 h-6 text-blue-600"></i></div>
+                    <div>
+                        <h4 data-i18n="use2" class="font-bold text-lg mb-2">کارت ویزیت دیجیتال</h4>
+                        <p data-i18n="use2Desc" class="text-stone-500 text-sm">بدلاً من الكروت الورقية، شارك رابطك مع زبائنك بلمسة واحدة.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="utensils" class="w-6 h-6 text-orange-600"></i></div>
+                    <div>
+                        <h4 data-i18n="use3" class="font-bold text-lg mb-2">منيو مطعم أو كافيه</h4>
+                        <p data-i18n="use3Desc" class="text-stone-500 text-sm">اعرض صور أطباقك ومنيو المحل مع زر مباشر للطلب واللوکیشن.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="stethoscope" class="w-6 h-6 text-green-600"></i></div>
+                    <div>
+                        <h4 data-i18n="use4" class="font-bold text-lg mb-2">بروفايل الأطباء والعيادات</h4>
+                        <p data-i18n="use4Desc" class="text-stone-500 text-sm">عرف المرضى بمواعيدك وخدماتك وموقع العيادة بدقة.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="briefcase" class="w-6 h-6 text-stone-700"></i></div>
+                    <div>
+                        <h4 data-i18n="use5" class="font-bold text-lg mb-2">معرض أعمال (Portfolio)</h4>
+                        <p data-i18n="use5Desc" class="text-stone-500 text-sm">اعرض أفضل أعمالك ووسائل التواصل معك بطريقة احترافية.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="qr-code" class="w-6 h-6 text-purple-600"></i></div>
+                    <div>
+                        <h4 data-i18n="use6" class="font-bold text-lg mb-2">صفحة المناسبات</h4>
+                        <p data-i18n="use6Desc" class="text-stone-500 text-sm">شارك تفاصيل حفلتك أو مؤتمرك مع خريطة المكان وبرنامج الحفل.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing (Simplified - Yearly Only) -->
+    <section class="py-24 px-6 bg-stone-900 rounded-t-[4rem] text-white text-center">
+        <h2 data-i18n="pricingTitle" class="text-3xl md:text-5xl font-bold mb-4">باقات بسيطة وشفافة</h2>
+        <p data-i18n="pricingSubtitle" class="text-stone-400 mb-16">استثمر في هويتك الرقمية بأفضل سعر.</p>
+
+        <div class="max-w-md mx-auto">
+            <div class="p-10 m3-card bg-orange-700 text-right shadow-2xl relative overflow-hidden transform hover:scale-105">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                <h3 data-i18n="planYr" class="text-orange-100 text-xl font-bold mb-4">الباقة السنوية</h3>
+                <div class="text-6xl font-bold mb-2 text-white tracking-tighter">$120 <span class="text-lg font-normal text-orange-200" data-i18n="yearlyLabel">/ سنويـاً</span></div>
+                <p class="text-orange-200 text-sm mb-8" data-i18n="yearlyDesc">حل احترافي متكامل لعلامتك التجارية</p>
+                
+                <ul class="space-y-4 mb-10 text-orange-50 text-sm">
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> <span data-i18n="p1">دومين احترافي (.com) مجاناً</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> <span data-i18n="p2">دعم ۳ لغات (عربي، كردي، EN)</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> <span data-i18n="p3">تحديث معلوماتك عبر واتساب</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> <span data-i18n="p4">تصميم عصري وحصری لک</span></li>
+                </ul>
+
+                <a href="https://wa.me/989358185552?text=I want the yearly plan" class="block w-full py-5 bg-stone-900 text-white font-bold rounded-2xl text-center shadow-lg hover:bg-black transition-all" data-i18n="ctaOrder">اطلب الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-stone-500 border-t border-stone-100 bg-white">
+        <p>LanLink &copy; 2024</p>
+        <p class="mt-2 text-xs">WhatsApp: +98 935 818 5552</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const i18n = {
+            ar: {
+                heroTitle: "هويتك الرقمية في صفحة واحدة",
+                heroSubtitle: "صمم لندينج بيج احترافي لعملك في العراق خلال ۳۰ دقيقة فقط. سريع، بسيط، وبدون تعقيد.",
+                ctaOrder: "اطلب صفحتك الآن",
+                ctaConsult: "اسأل وخذ صفحتك الآن",
+                featSectionTitle: "لماذا تختار LanLink؟",
+                fTitle1: "نطاق خاص (Domain)",
+                fDesc1: "احصل على رابط خاص باسمك (com.) لتعزيز احترافيتك.",
+                fTitle2: "تصميم فريد",
+                fDesc2: "لا نستخدم القوالب الجاهزة؛ كل صفحة تُصمم خصيصاً لتناسب هوية علامتك التجارية.",
+                fTitle3: "متعدد اللغات",
+                fDesc3: "صفحتك متاحة بالعربية، الكردية، والإنجليزية لتصل لجميع الزبائن.",
+                fTitle4: "دعم فني متميز",
+                fDesc4: "نحن معك دائماً عبر واتساب لضمان عمل صفحتك بأفضل صورة.",
+                useCasesTitle: "أين يمكنك استخدام صفحتك؟",
+                use1: "رابط البايو (Bio Link)",
+                use1Desc: "اجمع كل روابطك ومنصاتك في رابط واحد شیک در پروفایل.",
+                use2: "کارت ویزیت دیجیتال",
+                use2Desc: "بدلاً من الكروت الورقية، شارك رابطك مع زبائنك بلمسة واحدة.",
+                use3: "منيو مطعم أو كافيه",
+                use3Desc: "اعرض صور أطباقك ومنيو المحل مع زر مباشر للطلب واللوکیشن.",
+                use4: "بروفايل الأطباء والعيادات",
+                use4Desc: "عرف المرضى بمواعيدك وخدماتك وموقع العيادة بدقة.",
+                use5: "معرض أعمال (Portfolio)",
+                use5Desc: "اعرض أفضل أعمالك ووسائل التواصل معك بطريقة احترافية.",
+                use6: "صفحة المناسبات",
+                use6Desc: "شارك تفاصيل حفلتك أو مؤتمرك مع خريطة المكان وبرنامج الحفل.",
+                pricingTitle: "باقات بسيطة وشفافة",
+                pricingSubtitle: "استثمر في هويتك الرقمية بأفضل سعر.",
+                planYr: "الباقة السنوية",
+                yearlyLabel: "/ سنويـاً",
+                yearlyDesc: "حل احترافي متكامل لعلامتك التجارية",
+                p1: "دومين احترافي (.com) مجاناً",
+                p2: "دعم ۳ لغات (عربي، كردي، EN)",
+                p3: "تحديث معلوماتك عبر واتساب",
+                p4: "تصميم عصري وحصری لک",
+                dir: "rtl",
+                align: "text-right"
+            },
+            en: {
+                heroTitle: "Your Digital Identity in One Page",
+                heroSubtitle: "Professional landing pages for your business in Iraq in 30 minutes. Fast, simple, and clean.",
+                ctaOrder: "Order Now",
+                ctaConsult: "Ask & Get Your Page",
+                featSectionTitle: "Why Choose LanLink?",
+                fTitle1: "Custom Domain",
+                fDesc1: "Get a professional .com link to boost your credibility.",
+                fTitle2: "Unique Design",
+                fDesc2: "No templates. Every page is custom tailored to match your brand identity.",
+                fTitle3: "Multilingual",
+                fDesc3: "Available in Arabic, Kurdish, and English to reach everyone.",
+                fTitle4: "Priority Support",
+                fDesc4: "We are always available via WhatsApp to ensure your page runs perfectly.",
+                useCasesTitle: "Where to use your page?",
+                use1: "Instagram Bio Link",
+                use1Desc: "Combine all your social media platforms in one elegant link.",
+                use2: "Digital Business Card",
+                use2Desc: "Forget paper cards, share your link with one touch.",
+                use3: "Restaurant Menu",
+                use3Desc: "Display your menu with images and direct ordering buttons.",
+                use4: "Medical Profiles",
+                use4Desc: "Share clinic hours and Google Maps location with patients.",
+                use5: "Portfolio",
+                use5Desc: "Showcase your freelance work professionally.",
+                use6: "Event Pages",
+                use6Desc: "Share event maps and schedules with your guests.",
+                pricingTitle: "Simple Pricing",
+                pricingSubtitle: "Invest in your identity with the best value.",
+                planYr: "Yearly Plan",
+                yearlyLabel: "/ Yearly",
+                yearlyDesc: "Complete professional solution for your brand",
+                p1: "Free Professional Domain (.com)",
+                p2: "3 Languages (AR, KU, EN)",
+                p3: "WhatsApp Information Updates",
+                p4: "Modern & Custom Visual Design",
+                dir: "ltr",
+                align: "text-left"
+            },
+            ku: {
+                heroTitle: "ناسنامەی دیجیتاڵیت لە یەک لاپەڕەدا",
+                heroSubtitle: "لە ماوەی ٣٠ خولەکدا لاپەڕەیەکی نیشتنەوەی پیشەیی بۆ کارەکەت لە عێراق دروست بکە. خێرا و سادە.",
+                ctaOrder: "ئێستا داوا بکە",
+                ctaConsult: "پرسیار بکە و لاپەڕەکەت وەربگرە",
+                featSectionTitle: "بۆچی LanLink هەڵدەبژێریت؟",
+                fTitle1: "دۆمەینی تایبەت",
+                fDesc1: "بەستەرێکی تایبەت (com.) بەدەستبهێنە بۆ زیادکردنی متمانە.",
+                fTitle2: "دیزاینی تایبەت",
+                fDesc2: "قاڵبی ئامادە بەکارناهێنین؛ هەر لاپەڕەیەک بەتایبەت بۆ براندەکەت دیزاین دەکرێت.",
+                fTitle3: "چەند زمانە",
+                fDesc3: "لاپەڕەکەت بە عەرەبی، کوردی، و ئینگلیزی بەردەست دەبێت.",
+                fTitle4: "پشتیوانی نایاب",
+                fDesc4: "هەمیشە لە واتسئەپ لەگەڵتین بۆ دڵنیابوون لە کارکردنی لاپەڕەکەت.",
+                useCasesTitle: "لە کوێ دەتوانیت بەکاریبهێنیت؟",
+                use1: "بەستەری بایۆ",
+                use1Desc: "هەموو سۆشیاڵ میدیاکانت لە یەک بەستەردا کۆبکەرەوە.",
+                use2: "کارت وێزیتی دیجیتاڵ",
+                use2Desc: "لەبری کارتی کاغەزی، بەستەرەکەت هاوبەش بکە.",
+                use3: "مێنیوی ڕێستۆرانت",
+                use3Desc: "وێنەی خواردنەکان و دوگمەی داواکردن پیشان بدە.",
+                use4: "پرۆفایلی پزیشکان",
+                use4Desc: "کاتژمێرەکانی کارکردن و شوێنی کلینیکەکە بڵاوبکەرەوە.",
+                use5: "پۆرتفۆلیۆ",
+                use5Desc: "کارەکانت بە شێوەیەکی پیشەیی پیشان بدە.",
+                use6: "لاپەڕەی بۆنەکان",
+                use6Desc: "زانیاری ئاهەنگ یان کۆنفرانسەکان بڵاوبکەرەوە.",
+                pricingTitle: "پلانی نرخەکان",
+                pricingSubtitle: "باشترین نرخ بۆ ناسنامە دیجیتاڵییەکەت.",
+                planYr: "پلانی ساڵانە",
+                yearlyLabel: "/ ساڵانە",
+                yearlyDesc: "چارەسەری پیشەیی بۆ براندەکەت",
+                p1: "دۆمەینی (.com) بە خۆڕایی",
+                p2: "٣ زمان (عەرەبی، کوردی، EN)",
+                p3: "نوێکردنەوەی زانیاری لە واتسئەپ",
+                p4: "دیزاینی هاوچەرخ و تایبەت",
+                dir: "rtl",
+                align: "text-right"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const content = i18n[lang];
+            document.documentElement.lang = lang;
+            document.documentElement.dir = content.dir;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (content[key]) el.innerText = content[key];
+            });
+            document.querySelectorAll('.m3-card').forEach(card => {
+                card.classList.remove('text-right', 'text-left');
+                card.classList.add(content.align);
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            lucide.createIcons();
+        }
+
+        window.onload = () => changeLanguage('ar');
+    </script>
+</body>
+</html>
