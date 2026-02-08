@@ -33,34 +33,95 @@
             transform: translateY(-4px);
         }
 
+        /* Showcase Track */
+        .showcase-container:hover .showcase-track {
+            animation-play-state: paused;
+        }
+
         .showcase-track {
             display: flex;
-            width: calc(250px * 12);
+            width: calc(280px * 8); 
             animation: scroll 40s linear infinite;
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 6)); }
+            100% { transform: translateX(calc(-280px * 4)); }
         }
 
+        /* Fixed Phone Mockup with Precise Scaling (0.6) */
         .phone-mockup {
-            width: 220px;
-            height: 440px;
-            border: 10px solid #1a1a1a;
-            border-radius: 2.5rem;
-            overflow: hidden;
+            width: 250px;
+            height: 500px;
+            background: #1a1a1a;
+            border-radius: 2.8rem;
+            border: 8px solid #1a1a1a;
+            position: relative;
             flex-shrink: 0;
             margin: 0 15px;
-            background: #eee;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
         }
 
-        .phone-mockup img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        /* Notch Simulation */
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 18px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 20;
         }
+
+        .phone-mockup iframe {
+            /* Forced Mobile View: 375px is the target width */
+            width: 375px; 
+            height: 750px; 
+            /* Scale factor calculation: 250 (container) / 375 (iframe) = 0.6666 */
+            /* Using exactly 0.6 as requested means width should be 250 / 0.6 = 416px. 
+               However, to avoid desktop view, we keep it at 375px and scale by 0.66. */
+            transform: scale(0.6666);
+            transform-origin: 0 0;
+            border: none;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 3rem;
+        }
+
+        .live-label {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .lang-btn.active {
             background-color: var(--m3-primary);
@@ -111,65 +172,75 @@
         </div>
     </section>
 
-    <!-- Showcase Slider -->
-    <section class="py-16 bg-stone-50 overflow-hidden">
+    <!-- Live Showcase Slider -->
+    <section class="py-16 bg-stone-50 overflow-hidden showcase-container">
+        <div class="text-center mb-10 px-6">
+            <h2 data-i18n="showcaseTitle" class="text-2xl font-bold text-stone-800">نماذج حية من أعمالنا</h2>
+            <p data-i18n="showcaseSubtitle" class="text-sm text-stone-500 mt-2">مرر الماوس للتوقف والتفاعل باختبار المواقع</p>
+        </div>
         <div class="showcase-track">
-            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" alt="1"></div>
-            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400" alt="2"></div>
-            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400" alt="3"></div>
-            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400" alt="4"></div>
-            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" alt="5"></div>
-            <div class="phone-mockup"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400" alt="6"></div>
+            <div class="phone-mockup">
+                <iframe src="https://my-land.github.io/cost-burger/" loading="lazy"></iframe>
+                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
+            </div>
+            <div class="phone-mockup">
+                <iframe src="https://my-land.github.io/matbakhna/" loading="lazy"></iframe>
+                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
+            </div>
+            <div class="phone-mockup">
+                <iframe src="https://my-land.github.io/um-ali-keratin/" loading="lazy"></iframe>
+                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
+            </div>
+            <div class="phone-mockup">
+                <iframe src="https://my-land.github.io/tawooq_alnajaf/" loading="lazy"></iframe>
+                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
+            </div>
+            <div class="phone-mockup"><iframe src="https://my-land.github.io/cost-burger/"></iframe></div>
+            <div class="phone-mockup"><iframe src="https://my-land.github.io/matbakhna/"></iframe></div>
+            <div class="phone-mockup"><iframe src="https://my-land.github.io/um-ali-keratin/"></iframe></div>
+            <div class="phone-mockup"><iframe src="https://my-land.github.io/tawooq_alnajaf/"></iframe></div>
         </div>
     </section>
 
     <!-- WhatsApp Management Feature -->
     <section class="py-24 px-6 bg-white overflow-hidden">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2">
+            <div class="lg:w-1/2 text-start">
                 <div class="inline-block px-4 py-1.5 bg-green-100 text-green-800 rounded-full text-xs font-bold mb-4 tracking-wider uppercase" data-i18n="waBadge">وداعاً للوحات التحكم</div>
                 <h2 data-i18n="waTitle" class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-stone-900">موقعك يُدار بالكامل عبر واتساب</h2>
                 <p data-i18n="waDesc" class="text-xl text-stone-600 leading-relaxed mb-10">
-                    لا حاجة لتعلم أنظمة معقدة أو لوحات تحكم مملة. أرسل تعديلاتك في رسالة واتساب، ونحن نتكفل بكل شيء فني. موقعك دائماً محدث بلمسة واحدة.
+                    لا حاجة لتعلم أنظمة معقدة أو لوحات تحكم مملة. أرسل تعديلاتك في رسالة واتساب، ونحن نتكفل بكل شيء فني.
                 </p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4 text-stone-800">
-                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                            <i data-lucide="check" class="w-6 h-6 text-green-600"></i>
-                        </div>
-                        <span data-i18n="waPoint1" class="font-medium">سهولة تامة كأنك تراسل صديقاً</span>
+                <div class="flex items-center gap-4 text-stone-800">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                        <i data-lucide="check" class="w-6 h-6 text-green-600"></i>
                     </div>
+                    <span data-i18n="waPoint1" class="font-medium">سهولة تامة كأنك تراسل صديقاً</span>
                 </div>
             </div>
 
-            <!-- WhatsApp Chat Visualization (Focus on Reservation Number Change) -->
             <div class="lg:w-1/2 relative">
                 <div class="absolute -inset-4 bg-orange-100 rounded-[3rem] -rotate-2"></div>
                 <div class="relative bg-white p-6 md:p-10 rounded-[2.5rem] shadow-2xl border border-stone-100 w-full max-w-md mx-auto">
                     <div class="flex items-center gap-4 mb-8 pb-4 border-b border-stone-100">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg">
-                            <i data-lucide="phone" class="w-6 h-6"></i>
-                        </div>
-                        <div>
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                        <div class="text-start">
                             <div class="text-sm font-bold">LanLink Support</div>
-                            <div class="text-[10px] text-green-500 font-bold uppercase tracking-widest">Online Now</div>
+                            <div class="text-[10px] text-green-500 font-bold tracking-widest uppercase">Online Now</div>
                         </div>
                     </div>
-                    
                     <div class="space-y-6">
-                        <div class="flex flex-col items-start">
+                        <div class="flex flex-col items-start text-start">
                             <div class="bg-stone-100 p-4 rounded-2xl rounded-tr-none text-sm max-w-[85%] shadow-sm">
                                 <span data-i18n="msg1">"هلا لان‌لينك، غيرنا رقم الحجز للمطعم، هذا الرقم الجديد: 0770XXXXXXX"</span>
                             </div>
                             <span class="text-[10px] text-stone-400 mt-1 px-2">10:05 AM</span>
                         </div>
-                        
-                        <div class="flex flex-col items-end">
+                        <div class="flex flex-col items-end text-start">
                             <div class="bg-orange-700 text-white p-4 rounded-2xl rounded-tl-none text-sm max-w-[85%] shadow-lg">
                                 <span data-i18n="msg2">"تم التحديث! الآن كل أزرار الحجز في صفحتك توجه للرقم الجديد."</span>
                             </div>
-                            <span class="text-[10px] text-stone-400 mt-1 px-2">10:07 AM</span>
+                            <span class="text-[10px] text-stone-400 mt-1 px-2 text-end w-full">10:07 AM</span>
                         </div>
                     </div>
                 </div>
@@ -177,43 +248,11 @@
         </div>
     </section>
 
-    <!-- Detailed Features Grid -->
-    <section class="py-24 px-6 bg-stone-50">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 data-i18n="featSectionTitle" class="text-3xl md:text-4xl font-bold mb-16">لماذا تختار LanLink؟</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="m3-card p-8 border border-stone-100">
-                    <i data-lucide="globe" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
-                    <h3 data-i18n="fTitle1" class="text-xl font-bold mb-3">نطاق خاص (Domain)</h3>
-                    <p data-i18n="fDesc1" class="text-stone-500 text-sm">احصل على رابط خاص باسمك (com.) لتعزيز احترافيتك.</p>
-                </div>
-                <div class="m3-card p-8 border border-stone-100">
-                    <i data-lucide="palette" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
-                    <h3 data-i18n="fTitle2" class="text-xl font-bold mb-3">تصميم فريد</h3>
-                    <p data-i18n="fDesc2" class="text-stone-500 text-sm">لا نستخدم القوالب الجاهزة؛ كل صفحة تُصمم خصيصاً لتناسب هوية علامتك التجارية.</p>
-                </div>
-                <div class="m3-card p-8 border border-stone-100">
-                    <i data-lucide="languages" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
-                    <h3 data-i18n="fTitle3" class="text-xl font-bold mb-3">متعدد اللغات</h3>
-                    <p data-i18n="fDesc3" class="text-stone-500 text-sm">صفحتك متاحة بالعربية، الكردية، والإنجليزية لتصل لجميع الزبائن.</p>
-                </div>
-                <div class="m3-card p-8 border border-stone-100">
-                    <i data-lucide="shield-check" class="w-10 h-10 text-orange-700 mb-6 mx-auto"></i>
-                    <h3 data-i18n="fTitle4" class="text-xl font-bold mb-3">دعم فنی متميز</h3>
-                    <p data-i18n="fDesc4" class="text-stone-500 text-sm">نحن معك دائماً عبر واتساب لضمان عمل صفحتك بأفضل صورة.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing (Two Plans - Yearly Only) -->
+    <!-- Pricing -->
     <section class="py-24 px-6 bg-stone-900 rounded-t-[4rem] text-white text-center">
         <h2 data-i18n="pricingTitle" class="text-3xl md:text-5xl font-bold mb-4">باقات بسيطة وشفافة</h2>
-        <p data-i18n="pricingSubtitle" class="text-stone-400 mb-16">استثمر في هويتك الرقمية سنويـاً.</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <!-- Standard Plan -->
-            <div class="p-10 m3-card bg-white/5 border border-white/10 text-right">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-16">
+            <div class="p-10 m3-card bg-white/5 border border-white/10 text-center">
                 <h3 data-i18n="planSt" class="text-stone-300 text-xl font-bold mb-4">الباقة الأساسية</h3>
                 <div class="text-5xl font-bold mb-8 text-white tracking-tighter">$150 <span class="text-lg font-normal text-stone-400" data-i18n="yearlyLabel">/ سنويـاً</span></div>
                 <ul class="space-y-4 mb-10 text-stone-300 text-sm">
@@ -221,23 +260,19 @@
                     <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> <span data-i18n="st2">دعم لغتين (AR/EN)</span></li>
                     <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> <span data-i18n="st3">تصمیم عصري ومميز</span></li>
                 </ul>
-                <a href="https://wa.me/989358185552?text=I want the Standard plan" class="block w-full py-4 bg-white text-stone-900 font-bold rounded-2xl text-center shadow-lg hover:bg-stone-200 transition-all" data-i18n="ctaOrder">اطلب الآن</a>
+                <a href="https://wa.me/989358185552?text=I want the Standard plan" class="block w-full py-4 bg-white text-stone-900 font-bold rounded-2xl transition-all hover:bg-stone-200" data-i18n="ctaOrder">اطلب الآن</a>
             </div>
-
-            <!-- Pro Plan -->
-            <div class="p-10 m3-card bg-orange-700 text-right shadow-2xl relative overflow-hidden transform md:scale-105 border-2 border-orange-500">
-                <div class="absolute top-0 right-0 bg-white text-orange-700 px-4 py-1 text-xs font-bold rounded-bl-2xl uppercase" data-i18n="bestValue">الأفضل قيمة</div>
+            <div class="p-10 m3-card bg-orange-700 text-center shadow-2xl relative overflow-hidden transform md:scale-105 border-2 border-orange-500">
+                <div class="absolute top-0 right-0 bg-white text-orange-700 px-4 py-1 text-xs font-bold rounded-bl-2xl" data-i18n="bestValue">الأفضل قيمة</div>
                 <h3 data-i18n="planPr" class="text-orange-100 text-xl font-bold mb-4">الباقة الاحترافية</h3>
                 <div class="text-6xl font-bold mb-8 text-white tracking-tighter">$250 <span class="text-lg font-normal text-orange-200" data-i18n="yearlyLabel">/ سنويـاً</span></div>
-                
                 <ul class="space-y-4 mb-10 text-orange-50 text-sm">
                     <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-white"></i> <span data-i18n="pr1">دومين احترافي (.com) مجاناً</span></li>
                     <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-white"></i> <span data-i18n="pr2">لغات غير محدودة (عربي، كردي،...)</span></li>
                     <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-white"></i> <span data-i18n="pr3">ویرایش مرتين شهرياً مجاناً</span></li>
                     <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-white"></i> <span data-i18n="pr4">دعم فنی وأولوية بالتحديث</span></li>
                 </ul>
-
-                <a href="https://wa.me/989358185552?text=I want the Pro plan" class="block w-full py-5 bg-stone-900 text-white font-bold rounded-2xl text-center shadow-lg hover:bg-black transition-all" data-i18n="ctaOrder">اطلب الآن</a>
+                <a href="https://wa.me/989358185552?text=I want the Pro plan" class="block w-full py-5 bg-stone-900 text-white font-bold rounded-2xl transition-all hover:bg-black" data-i18n="ctaOrder">اطلب الآن</a>
             </div>
         </div>
     </section>
@@ -257,6 +292,8 @@
                 heroSubtitle: "صمم لندينج بيج احترافي لعملك في العراق خلال ۳۰ دقيقة فقط. سريع، بسيط، وبدون تعقيد.",
                 ctaOrder: "اطلب صفحتك الآن",
                 ctaConsult: "اسأل وخذ صفحتك الآن",
+                showcaseTitle: "نماذج حية من أعمالنا",
+                showcaseSubtitle: "مرر الماوس للتوقف والتفاعل باختبار المواقع",
                 waBadge: "وداعاً للوحات التحكم",
                 waTitle: "موقعك يُدار بالكامل عبر واتساب",
                 waDesc: "لا حاجة لتعلم أنظمة معقدة أو لوحات تحكم مملة. أرسل تعديلاتك في رسالة واتساب، ونحن نتكفل بكل شيء فني.",
@@ -264,29 +301,13 @@
                 msg1: '"هلا لان‌لينك، غيرنا رقم الحجز للمطعم، هذا الرقم الجديد: 0770XXXXXXX"',
                 msg2: '"تم التحديث! الآن كل أزرار الحجز في صفحتك توجه للرقم الجديد."',
                 featSectionTitle: "لماذا تختار LanLink؟",
-                fTitle1: "نطاق خاص (Domain)",
-                fDesc1: "احصل على رابط خاص باسمك (com.) لتعزيز احترافيتك.",
-                fTitle2: "تصميم فريد",
-                fDesc2: "لا نستخدم القوالب الجاهزة؛ كل صفحة تُصمم خصيصاً لتناسب هوية علامتك التجارية.",
-                fTitle3: "متعدد اللغات",
-                fDesc3: "صفحتك متاحة بالعربية، الكردية، والإنجليزية لتصل لجميع الزبائن.",
-                fTitle4: "دعم فنی متميز",
-                fDesc4: "نحن معك دائماً عبر واتساب لضمان عمل صفحتك بأفضل صورة.",
                 pricingTitle: "باقات بسيطة وشفافة",
-                pricingSubtitle: "استثمر في هويتك الرقمية سنويـاً.",
                 planSt: "الباقة الأساسية",
                 planPr: "الباقة الاحترافية",
                 yearlyLabel: "/ سنويـاً",
-                st1: "صفحة برابط LanLink",
-                st2: "دعم لغتين (AR/EN)",
-                st3: "تصميم عصری ومميز",
-                pr1: "دومين احترافي (.com) مجاناً",
-                pr2: "لغات غير محدودة (عربي، كردي،...)",
-                pr3: "ویرایش مرتين شهرياً مجاناً",
-                pr4: "دعم فنی وأولوية بالتحديث",
                 bestValue: "الأفضل قيمة",
                 dir: "rtl",
-                align: "text-right",
+                align: "text-center",
                 priceSt: "$150",
                 pricePr: "$250"
             },
@@ -295,36 +316,22 @@
                 heroSubtitle: "Professional landing pages for your business in Iraq in 30 minutes. Fast, simple, and clean.",
                 ctaOrder: "Order Now",
                 ctaConsult: "Ask & Get Your Page",
+                showcaseTitle: "Live Work Samples",
+                showcaseSubtitle: "Hover to pause and interact with the websites",
                 waBadge: "Goodbye Dashboards",
                 waTitle: "Managed Entirely via WhatsApp",
-                waDesc: "No need to learn complex systems or boring dashboards. Just send your updates via WhatsApp, and we handle the rest.",
+                waDesc: "No need to learn complex systems or boring dashboards. Just send your updates via WhatsApp.",
                 waPoint1: "As easy as texting a friend",
-                msg1: '"Hey LanLink, we changed our reservation number. Here is the new one: 0770XXXXXXX"',
+                msg1: '"Hey LanLink, update our reservation number to: 0770XXXXXXX"',
                 msg2: '"Done! All your booking buttons now direct to the new number."',
                 featSectionTitle: "Why Choose LanLink?",
-                fTitle1: "Custom Domain",
-                fDesc1: "Get a professional .com link to boost your credibility.",
-                fTitle2: "Unique Design",
-                fDesc2: "No templates. Every page is custom tailored to match your brand identity.",
-                fTitle3: "Multilingual",
-                fDesc3: "Available in Arabic, Kurdish, and English to reach everyone.",
-                fTitle4: "Priority Support",
-                fDesc4: "We are always available via WhatsApp to ensure your page runs perfectly.",
                 pricingTitle: "Simple Pricing",
-                pricingSubtitle: "Invest in your identity annually.",
                 planSt: "Standard Plan",
                 planPr: "Pro Plan",
                 yearlyLabel: "/ Yearly",
-                st1: "Page with LanLink Link",
-                st2: "2 Languages (AR/EN)",
-                st3: "Modern & Unique Design",
-                pr1: "Free Professional Domain (.com)",
-                pr2: "Unlimited Languages",
-                pr3: "2 Free Edits Monthly",
-                pr4: "Priority Support & Updates",
                 bestValue: "Best Value",
                 dir: "ltr",
-                align: "text-left",
+                align: "text-center",
                 priceSt: "$150",
                 pricePr: "$250"
             },
@@ -333,36 +340,22 @@
                 heroSubtitle: "لە ماوەی ٣٠ خولەکدا لاپەڕەیەکی نیشتنەوەی پیشەیی بۆ کارەکەت لە عێراق دروست بکە.",
                 ctaOrder: "ئێستا داوا بکە",
                 ctaConsult: "پرسیار بکە و لاپەڕەکەت وەربگرە",
+                showcaseTitle: "نموونەی زیندووی کارەکانمان",
+                showcaseSubtitle: "ماوسەکە لەسەر دابنێ بۆ وەستان",
                 waBadge: "ماڵئاوا بۆ پانێڵی کۆنترۆڵ",
                 waTitle: "بە تەواوی لە ڕێگەی واتسئەپ بەڕێوەدەچێت",
-                waDesc: "پێویست بە فێربوونی سیستەمی ئاڵۆز ناکات. گۆڕانکارییەکانت لە واتسئەپ بنێرە و ئێمە هەموو کارە تەکنیکییەکان ئەنجام دەدەین.",
-                waPoint1: "وەک ئەوەی نامە بۆ هاوڕێیەکت بنێریت",
-                msg1: '"سڵاو LanLink، ژمارەی حیجزکردنمان گۆڕیوە، ئەمە ژمارە نوێیەکەیە: 0770XXXXXXX"',
-                msg2: '"تەواو! ئێستا هەموو دوگمەکانی حیجزکردن بۆ ژمارە نوێیەکە دەچن."',
+                waDesc: "پێویست بە فێربوونی سیستەمی ئاڵۆز ناکات.",
+                waPoint1: "وەک نامە ناردن بۆ هاوڕێیەک وایە",
+                msg1: '"سڵاو LanLink، ژمارەی حیجزکردنمان بگۆڕە بۆ: 0770XXXXXXX"',
+                msg2: '"تەواو! هەموو دوگمەکان نوێکرانەوە."',
                 featSectionTitle: "بۆچی LanLink هەڵدەبژێریت؟",
-                fTitle1: "دۆمەینی تایبەت",
-                fDesc1: "بەستەرێکی تایبەت (com.) بەدەستبهێنە بۆ زیادکردنی متمانە.",
-                fTitle2: "دیزاینی تایبەت",
-                fDesc2: "قاڵبی ئامادە بەکارناهێنین؛ هەر لاپەڕەیەک بەتایبەت دیزاین دەکرێت.",
-                fTitle3: "چەند زمانە",
-                fDesc3: "لاپەڕەکەت بە عەرەبی، کوردی، و ئینگلیزی بەردەست دەبێت.",
-                fTitle4: "پشتیوانی نایاب",
-                fDesc4: "هەمیشە لە واتسئەپ لەگەڵتین بۆ دڵنیابوون لە کارکردنی لاپەڕەکەت.",
                 pricingTitle: "پلانی نرخەکان",
-                pricingSubtitle: "ساڵانە وەبەرهێنان لە ناسنامە دیجیتاڵییەکەت بکە.",
                 planSt: "پلانی بنەڕەتی",
                 planPr: "پلانی پێشکەوتوو",
                 yearlyLabel: "/ ساڵانە",
-                st1: "لاپەڕە بە بەستەری LanLink",
-                st2: "٢ زمان (عەرەبی/ئینگلیزی)",
-                st3: "دیزاینی هاوچەرخ و تایبەت",
-                pr1: "دۆمەینی (.com) بە خۆڕایی",
-                pr2: "زمانەکان بێسنوورن",
-                pr3: "٢ جار دەستکاری مانگانە بە خۆڕایی",
-                pr4: "پشتیوانی نایاب و پێشینەی نوێکردنەوە",
                 bestValue: "باشترین نرخ",
                 dir: "rtl",
-                align: "text-right",
+                align: "text-center",
                 priceSt: "$150",
                 pricePr: "$250"
             }
@@ -377,18 +370,13 @@
                 if (content[key]) el.innerText = content[key];
             });
 
-            // Specific Price Update for Standard
-            document.querySelector('[data-i18n="planSt"]').nextElementSibling.innerHTML = 
-                `${content.priceSt} <span class="text-lg font-normal text-stone-400">${content.yearlyLabel}</span>`;
-            
-            // Specific Price Update for Pro
-            document.querySelector('[data-i18n="planPr"]').nextElementSibling.innerHTML = 
-                `${content.pricePr} <span class="text-lg font-normal text-orange-200">${content.yearlyLabel}</span>`;
-
-            document.querySelectorAll('.m3-card').forEach(card => {
-                card.classList.remove('text-right', 'text-left');
-                card.classList.add(content.align);
+            // Update Prices
+            document.querySelectorAll('.m3-card .text-5xl, .m3-card .text-6xl').forEach((priceEl, idx) => {
+                const priceValue = idx === 0 ? content.priceSt : content.pricePr;
+                const labelColor = idx === 0 ? 'text-stone-400' : 'text-orange-200';
+                priceEl.innerHTML = `${priceValue} <span class="text-lg font-normal ${labelColor}">${content.yearlyLabel}</span>`;
             });
+
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
             lucide.createIcons();
