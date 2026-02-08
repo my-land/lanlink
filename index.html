@@ -33,23 +33,23 @@
             transform: translateY(-4px);
         }
 
-        /* Showcase Track */
-        .showcase-container:hover .showcase-track {
-            animation-play-state: paused;
-        }
-
-        .showcase-track {
+        /* Responsive Showcase Grid with Scroll Snap */
+        .showcase-wrapper {
             display: flex;
-            width: calc(280px * 8); 
-            animation: scroll 40s linear infinite;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-280px * 4)); }
+        .showcase-wrapper::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Fixed Phone Mockup with Precise Scaling (0.6) */
+        /* Base Box Style */
         .phone-mockup {
             width: 250px;
             height: 500px;
@@ -58,40 +58,35 @@
             border: 8px solid #1a1a1a;
             position: relative;
             flex-shrink: 0;
-            margin: 0 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             overflow: hidden;
+            scroll-snap-align: center;
         }
 
-        /* Notch Simulation */
-        .phone-mockup::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 18px;
-            background: #1a1a1a;
-            border-radius: 10px;
-            z-index: 20;
+        /* Desktop specific card for Um Ali */
+        .desktop-card {
+            width: 600px; /* Bigger width for desktop view */
         }
 
         .phone-mockup iframe {
-            /* Forced Mobile View: 375px is the target width */
-            width: 375px; 
-            height: 750px; 
-            /* Scale factor calculation: 250 (container) / 375 (iframe) = 0.6666 */
-            /* Using exactly 0.6 as requested means width should be 250 / 0.6 = 416px. 
-               However, to avoid desktop view, we keep it at 375px and scale by 0.66. */
-            transform: scale(0.6666);
+            width: 200%; 
+            height: 200%; 
+            transform: scale(0.5);
             transform-origin: 0 0;
             border: none;
             background: white;
             position: absolute;
             top: 0;
             left: 0;
-            border-radius: 3rem;
+            border-radius: 5.6rem;
+        }
+
+        /* Adjust iframe for Desktop view in Um Ali card */
+        .desktop-card iframe {
+            width: 250%; /* 100/0.4 = 250% of 600px container provides enough width for desktop layout */
+            height: 250%;
+            transform: scale(0.4);
+            border-radius: 6rem;
         }
 
         .live-label {
@@ -122,6 +117,21 @@
         }
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #D1D5DB;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--m3-primary);
+            width: 24px;
+            border-radius: 12px;
+        }
 
         .lang-btn.active {
             background-color: var(--m3-primary);
@@ -172,33 +182,50 @@
         </div>
     </section>
 
-    <!-- Live Showcase Slider -->
-    <section class="py-16 bg-stone-50 overflow-hidden showcase-container">
+    <!-- Interactive Showcase Grid -->
+    <section class="py-16 bg-stone-50 overflow-hidden">
         <div class="text-center mb-10 px-6">
             <h2 data-i18n="showcaseTitle" class="text-2xl font-bold text-stone-800">نماذج حية من أعمالنا</h2>
-            <p data-i18n="showcaseSubtitle" class="text-sm text-stone-500 mt-2">مرر الماوس للتوقف والتفاعل باختبار المواقع</p>
+            <p data-i18n="showcaseSubtitle" class="text-sm text-stone-500 mt-2">اسحب لليمين أو اليسار لاستعراض المشاريع</p>
         </div>
-        <div class="showcase-track">
-            <div class="phone-mockup">
-                <iframe src="https://my-land.github.io/cost-burger/" loading="lazy"></iframe>
-                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
+        
+        <div class="max-w-7xl mx-auto px-4">
+            <div id="showcase-container" class="showcase-wrapper">
+                <!-- 1. Cost Burger -->
+                <div class="phone-mockup">
+                    <iframe src="https://my-land.github.io/cost-burger/" loading="lazy"></iframe>
+                    <div class="live-label"><div class="live-dot"></div> Live</div>
+                </div>
+                <!-- 2. Matbakhna -->
+                <div class="phone-mockup">
+                    <iframe src="https://my-land.github.io/matbakhna/" loading="lazy"></iframe>
+                    <div class="live-label"><div class="live-dot"></div> Live</div>
+                </div>
+                <!-- 3. Bahar Restocafe -->
+                <div class="phone-mockup">
+                    <iframe src="https://bahar-restocafe.com/" loading="lazy"></iframe>
+                    <div class="live-label"><div class="live-dot"></div> Live</div>
+                </div>
+                <!-- 4. Majboos Alhashi -->
+                <div class="phone-mockup">
+                    <iframe src="https://my-land.github.io/majboos_alhashi/" loading="lazy"></iframe>
+                    <div class="live-label"><div class="live-dot"></div> Live</div>
+                </div>
+                <!-- 5. Um Ali Keratin (Desktop View) -->
+                <div class="phone-mockup desktop-card">
+                    <iframe src="https://my-land.github.io/um-ali-keratin/" loading="lazy"></iframe>
+                    <div class="live-label"><div class="live-dot"></div> Live (Desktop)</div>
+                </div>
+                <!-- 6. Tawooq Najaf -->
+                <div class="phone-mockup">
+                    <iframe src="https://my-land.github.io/tawooq_alnajaf/" loading="lazy"></iframe>
+                    <div class="live-label"><div class="live-dot"></div> Live</div>
+                </div>
             </div>
-            <div class="phone-mockup">
-                <iframe src="https://my-land.github.io/matbakhna/" loading="lazy"></iframe>
-                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
+
+            <!-- Dots Indicator -->
+            <div id="dots-container" class="flex justify-center gap-2 mt-8">
             </div>
-            <div class="phone-mockup">
-                <iframe src="https://my-land.github.io/um-ali-keratin/" loading="lazy"></iframe>
-                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
-            </div>
-            <div class="phone-mockup">
-                <iframe src="https://my-land.github.io/tawooq_alnajaf/" loading="lazy"></iframe>
-                <div class="live-label"><div class="live-dot"></div> Live Preview</div>
-            </div>
-            <div class="phone-mockup"><iframe src="https://my-land.github.io/cost-burger/"></iframe></div>
-            <div class="phone-mockup"><iframe src="https://my-land.github.io/matbakhna/"></iframe></div>
-            <div class="phone-mockup"><iframe src="https://my-land.github.io/um-ali-keratin/"></iframe></div>
-            <div class="phone-mockup"><iframe src="https://my-land.github.io/tawooq_alnajaf/"></iframe></div>
         </div>
     </section>
 
@@ -206,7 +233,7 @@
     <section class="py-24 px-6 bg-white overflow-hidden">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div class="lg:w-1/2 text-start">
-                <div class="inline-block px-4 py-1.5 bg-green-100 text-green-800 rounded-full text-xs font-bold mb-4 tracking-wider uppercase" data-i18n="waBadge">وداعاً للوحات التحكم</div>
+                <div class="inline-block px-4 py-1.5 bg-green-100 text-green-800 rounded-full text-sm font-bold mb-4 tracking-wider uppercase" data-i18n="waBadge">وداعاً للوحات التحكم</div>
                 <h2 data-i18n="waTitle" class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-stone-900">موقعك يُدار بالكامل عبر واتساب</h2>
                 <p data-i18n="waDesc" class="text-xl text-stone-600 leading-relaxed mb-10">
                     لا حاجة لتعلم أنظمة معقدة أو لوحات تحكم مملة. أرسل تعديلاتك في رسالة واتساب، ونحن نتكفل بكل شيء فني.
@@ -221,12 +248,12 @@
 
             <div class="lg:w-1/2 relative">
                 <div class="absolute -inset-4 bg-orange-100 rounded-[3rem] -rotate-2"></div>
-                <div class="relative bg-white p-6 md:p-10 rounded-[2.5rem] shadow-2xl border border-stone-100 w-full max-w-md mx-auto">
+                <div class="relative bg-white p-6 md:p-10 rounded-[2.5rem] shadow-2xl border border-stone-100 w-full max-md mx-auto">
                     <div class="flex items-center gap-4 mb-8 pb-4 border-b border-stone-100">
                         <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg"><i data-lucide="phone" class="w-6 h-6"></i></div>
                         <div class="text-start">
                             <div class="text-sm font-bold">LanLink Support</div>
-                            <div class="text-[10px] text-green-500 font-bold tracking-widest uppercase">Online Now</div>
+                            <div class="text-[10px] text-green-500 font-bold uppercase tracking-widest">Online Now</div>
                         </div>
                     </div>
                     <div class="space-y-6">
@@ -258,7 +285,7 @@
                 <ul class="space-y-4 mb-10 text-stone-300 text-sm">
                     <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> <span data-i18n="st1">صفحة برابط LanLink</span></li>
                     <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> <span data-i18n="st2">دعم لغتين (AR/EN)</span></li>
-                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> <span data-i18n="st3">تصمیم عصري ومميز</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> <span data-i18n="st3">تصميم عصری ومميز</span></li>
                 </ul>
                 <a href="https://wa.me/989358185552?text=I want the Standard plan" class="block w-full py-4 bg-white text-stone-900 font-bold rounded-2xl transition-all hover:bg-stone-200" data-i18n="ctaOrder">اطلب الآن</a>
             </div>
@@ -293,14 +320,13 @@
                 ctaOrder: "اطلب صفحتك الآن",
                 ctaConsult: "اسأل وخذ صفحتك الآن",
                 showcaseTitle: "نماذج حية من أعمالنا",
-                showcaseSubtitle: "مرر الماوس للتوقف والتفاعل باختبار المواقع",
+                showcaseSubtitle: "اسحب لليمين أو اليسار لاستعراض المشاريع",
                 waBadge: "وداعاً للوحات التحكم",
                 waTitle: "موقعك يُدار بالكامل عبر واتساب",
-                waDesc: "لا حاجة لتعلم أنظمة معقدة أو لوحات تحكم مملة. أرسل تعديلاتك في رسالة واتساب، ونحن نتكفل بكل شيء فني.",
+                waDesc: "لا حاجة لتعلم أنظمة معقدة أو لوحات تحکم مملة. أرسل تعديلاتك في رسالة واتساب، ونحن نتكفل بكل شيء فني.",
                 waPoint1: "سهولة تامة كأنك تراسل صديقاً",
                 msg1: '"هلا لان‌لينك، غيرنا رقم الحجز للمطعم، هذا الرقم الجديد: 0770XXXXXXX"',
                 msg2: '"تم التحديث! الآن كل أزرار الحجز في صفحتك توجه للرقم الجديد."',
-                featSectionTitle: "لماذا تختار LanLink؟",
                 pricingTitle: "باقات بسيطة وشفافة",
                 planSt: "الباقة الأساسية",
                 planPr: "الباقة الاحترافية",
@@ -317,14 +343,13 @@
                 ctaOrder: "Order Now",
                 ctaConsult: "Ask & Get Your Page",
                 showcaseTitle: "Live Work Samples",
-                showcaseSubtitle: "Hover to pause and interact with the websites",
+                showcaseSubtitle: "Swipe left or right to explore projects",
                 waBadge: "Goodbye Dashboards",
                 waTitle: "Managed Entirely via WhatsApp",
-                waDesc: "No need to learn complex systems or boring dashboards. Just send your updates via WhatsApp.",
+                waDesc: "No need to learn complex systems. Just send updates via WhatsApp and we handle the rest.",
                 waPoint1: "As easy as texting a friend",
                 msg1: '"Hey LanLink, update our reservation number to: 0770XXXXXXX"',
                 msg2: '"Done! All your booking buttons now direct to the new number."',
-                featSectionTitle: "Why Choose LanLink?",
                 pricingTitle: "Simple Pricing",
                 planSt: "Standard Plan",
                 planPr: "Pro Plan",
@@ -341,14 +366,13 @@
                 ctaOrder: "ئێستا داوا بکە",
                 ctaConsult: "پرسیار بکە و لاپەڕەکەت وەربگرە",
                 showcaseTitle: "نموونەی زیندووی کارەکانمان",
-                showcaseSubtitle: "ماوسەکە لەسەر دابنێ بۆ وەستان",
+                showcaseSubtitle: "بۆ لای ڕاست یان چەپ ڕایبکێشە بۆ بینینی پڕۆژەکان",
                 waBadge: "ماڵئاوا بۆ پانێڵی کۆنترۆڵ",
-                waTitle: "بە تەواوی لە ڕێگەی واتسئەپ بەڕێوەدەچێت",
-                waDesc: "پێویست بە فێربوونی سیستەمی ئاڵۆز ناکات.",
+                waTitle: "بە تەواوی لە ڕێگەی واتسئەپەوە بەڕێوەدەچێت",
+                waDesc: "پێویست بە فێربوونی سیستەمی ئاڵۆز ناکات. گۆڕانکارییەکانت بنێرە و ئێمە ئەنجامی دەدەین.",
                 waPoint1: "وەک نامە ناردن بۆ هاوڕێیەک وایە",
                 msg1: '"سڵاو LanLink، ژمارەی حیجزکردنمان بگۆڕە بۆ: 0770XXXXXXX"',
-                msg2: '"تەواو! هەموو دوگمەکان نوێکرانەوە."',
-                featSectionTitle: "بۆچی LanLink هەڵدەبژێریت؟",
+                msg2: '"تەواو! هەموو دوگمەکانی حیجزکردن نوێکرانەوە."',
                 pricingTitle: "پلانی نرخەکان",
                 planSt: "پلانی بنەڕەتی",
                 planPr: "پلانی پێشکەوتوو",
@@ -377,12 +401,55 @@
                 priceEl.innerHTML = `${priceValue} <span class="text-lg font-normal ${labelColor}">${content.yearlyLabel}</span>`;
             });
 
+            document.querySelectorAll('.m3-card').forEach(card => {
+                card.classList.remove('text-right', 'text-left', 'text-center');
+                card.classList.add(content.align);
+            });
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
             lucide.createIcons();
+            initDots();
         }
 
-        window.onload = () => changeLanguage('ar');
+        const container = document.getElementById('showcase-container');
+        const dotsContainer = document.getElementById('dots-container');
+
+        function initDots() {
+            const items = container.querySelectorAll('.phone-mockup');
+            dotsContainer.innerHTML = '';
+            
+            // Heuristic to handle the wide desktop card in step calculation
+            const visibleItems = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+            const numSteps = Math.ceil(items.length / visibleItems);
+
+            for (let i = 0; i < numSteps; i++) {
+                const dot = document.createElement('div');
+                dot.className = `dot ${i === 0 ? 'active' : ''}`;
+                dot.onclick = () => {
+                    // Approximate scroll based on current visibility logic
+                    const scrollAmount = i * (window.innerWidth >= 1024 ? (250 * 3) : (window.innerWidth >= 768 ? (250 * 2) : 250));
+                    container.scrollTo({ left: document.documentElement.dir === 'rtl' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+                };
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        container.addEventListener('scroll', () => {
+            const scrollLeft = Math.abs(container.scrollLeft);
+            const visibleItems = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+            const stepWidth = (250 + 20) * visibleItems; 
+            const activeIndex = Math.round(scrollLeft / stepWidth);
+            const dots = dotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === activeIndex);
+            });
+        });
+
+        window.addEventListener('resize', initDots);
+        window.onload = () => {
+            changeLanguage('ar');
+            initDots();
+        };
     </script>
 </body>
 </html>
